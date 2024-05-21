@@ -10,7 +10,12 @@ appdgraph = appdigraph
 appdgraph_src = appdigraph.cpp digraph.cpp graph.cpp
 appdgraph_obj = $(appdgraph_src:.cpp=.o)
 
-all: appgraph appdigraph
+# DFS
+appdfs = appdfs
+appdfs_src = appdfs.cpp graph.cpp dfs.cpp
+appdfs_obj = $(appdfs_src:.cpp=.o)
+
+all: appgraph appdigraph appdfs
 
 $(appgraph): $(appgraph_obj)
 	g++ $(CPPFLAGS) $(appgraph_obj) -o $@
@@ -18,6 +23,9 @@ $(appgraph): $(appgraph_obj)
 $(appdgraph): $(appdgraph_obj)
 	g++ $(CPPFLAGS) $(appdgraph_obj) -o $@
 
+$(appdfs): $(appdfs_obj)
+	g++ $(CPPFLAGS) $(appdfs_obj) -o $@
+
 clean:
-	-@ rm -f $(appgraph_obj) $(appgraph) $(appdgraph_obj) $(appdgraph)
+	-@ rm -f $(appgraph_obj) $(appgraph) $(appdgraph_obj) $(appdgraph) ${appdfs_obj} ${appdfs}
 
