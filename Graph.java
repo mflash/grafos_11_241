@@ -73,7 +73,7 @@ public class Graph {
       for (String w : getAdj(v)) {
         String edge = v.compareTo(w) > 0 ? v + w : w + v;
         if (!edges.contains(edge)) {
-          sb.append(v + " -- " + w + NEWLINE);
+          sb.append("\""+ v + "\" -- \"" + w + "\"" + NEWLINE);
           edges.add(edge);
         }
       }
