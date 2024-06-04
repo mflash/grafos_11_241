@@ -20,7 +20,22 @@ appbfs = appbfs
 appbfs_src = appbfs.cpp graph.cpp bfs.cpp
 appbfs_obj = $(appbfs_src:.cpp=.o)
 
-all: appgraph appdigraph appdfs appbfs
+# Ciclos nao dirigidos
+appucycle = appucycle
+appucycle_src = appundirectedcycle.cpp undirectedcycle.cpp graph.cpp
+appucycle_obj = $(appucycle_src:.cpp=.o)
+
+# Ciclos dirigidos
+appdcycle = appdcycle
+appdcycle_src = appdirectedcycle.cpp directedcycle.cpp digraph.cpp graph.cpp
+appdcycle_obj = $(appdcycle_src:.cpp=.o)
+
+# Ord. Topológica
+apptopo = apptopo
+apptopo_src = apptopo.cpp graph.cpp digraph.cpp topological.cpp
+apptopo_obj = $(apptopo_src:.cpp=.o)
+
+all: appgraph appdigraph appdfs appbfs appucycle appdcycle apptopo
 
 $(appgraph): $(appgraph_obj)
 	g++ $(CPPFLAGS) $(appgraph_obj) -o $@
@@ -34,6 +49,15 @@ $(appdfs): $(appdfs_obj)
 $(appbfs): $(appbfs_obj)
 	g++ $(CPPFLAGS) $(appbfs_obj) -o $@
 
-clean:
-	-@ rm -f $(appgraph_obj) $(appgraph) $(appdgraph_obj) $(appdgraph) ${appdfs_obj} ${appdfs} ${appbfs_obj} ${appbfs}
+$(appucycle): $(appucycle_obj)
+	g++ $(CPPFLAGS) $(appucycle_obj) -o $@
 
+$(appdcycle): $(appdcycle_obj)
+	g++ $(CPPFLAGS) $(appdcycle_obj) -o $@
+
+$(apptopo): $(apptopo_obj)
+	g++ $(CPPFLAGS) $(apptopo_obj) -o $@
+
+clean:
+	-@ rm -f $(appgraph_obj) $(appgraph) $(appdgraph_obj) $(appdgraph) $(appdfs_obj) $(appbfs_obj) $(appdfs) $(appbfs) \
+	   	$(appucycle) $(appucycle_obj) $(appdcycle) $(appdcycle_obj) $(apptopo) $(apptopo_obj)

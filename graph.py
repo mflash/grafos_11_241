@@ -40,7 +40,7 @@ class Graph:
     def __readFromFile(self, filename):
         with open(filename) as arq:
             for line in arq:
-                verts = line[:-1].split()
+                verts = line.split()
                 self.addEdge(verts[0], verts[1])
 
 
