@@ -35,7 +35,12 @@ apptopo = apptopo
 apptopo_src = apptopo.cpp graph.cpp digraph.cpp topological.cpp
 apptopo_obj = $(apptopo_src:.cpp=.o)
 
-all: appgraph appdigraph appdfs appbfs appucycle appdcycle apptopo
+# classe EdgeWeightedGraph
+appewgraph = appewgraph
+appewgraph_src = appewgraph.cpp edgeweightedgraph.cpp
+appewgraph_obj = $(appewgraph_src:.cpp=.o)
+
+all: appgraph appdigraph appdfs appbfs appucycle appdcycle apptopo appewgraph
 
 $(appgraph): $(appgraph_obj)
 	g++ $(CPPFLAGS) $(appgraph_obj) -o $@
@@ -58,6 +63,9 @@ $(appdcycle): $(appdcycle_obj)
 $(apptopo): $(apptopo_obj)
 	g++ $(CPPFLAGS) $(apptopo_obj) -o $@
 
+$(appewgraph): $(appewgraph_obj)
+	g++ $(CPPFLAGS) $(appewgraph_obj) -o $@
+
 clean:
 	-@ rm -f $(appgraph_obj) $(appgraph) $(appdgraph_obj) $(appdgraph) $(appdfs_obj) $(appbfs_obj) $(appdfs) $(appbfs) \
-	   	$(appucycle) $(appucycle_obj) $(appdcycle) $(appdcycle_obj) $(apptopo) $(apptopo_obj)
+	   	$(appucycle) $(appucycle_obj) $(appdcycle) $(appdcycle_obj) $(apptopo) $(apptopo_obj) $(appewgraph_obj) $(appewgraph)
