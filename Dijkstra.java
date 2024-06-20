@@ -50,7 +50,7 @@ public class Dijkstra {
     }
 
     private void relax(Edge e) {
-        System.out.println("Relax: " + e.toString());
+        // System.out.println("Relax: " + e.toString());
         String v = e.getV();
         String w = e.getW();
         if (distTo.get(w) > distTo.get(v) + e.getWeight()) {
